@@ -4,8 +4,8 @@ fetch(`http://localhost:3000/movies`)
         console.log(movies)
         movies.forEach(renderMovie)
         movies.forEach(displayInfo)
+        displayInfo(movies[0])
     });
-    setdisplayInfo(movies)[0]
 
 function renderMovie(movie) {
     const img = document.createElement('img');
@@ -25,4 +25,3 @@ function displayInfo(movie) {
     detailImage.src = movie.image
 
 }
-// displayInfo()
