@@ -1,16 +1,18 @@
-fetch(`http://localhost:3000/movies`)
+const url = "http://localhost:3000/movies"
+
+fetch(url)
     .then((response) => response.json())
     .then((movies) => {
-        console.log(movies)
-        movies.forEach(renderMovie)
-        movies.forEach(displayInfo)
+        movies.map(renderMovie)
+        movies.map(displayInfo)
         displayInfo(movies[0])
+
+
     });
 
 function renderMovie(movie) {
     const img = document.createElement('img');
     img.src = movie.image;
-    //li.textContent = "hi"
     document.querySelector('#movie-list').append(img)
 }
 
@@ -19,9 +21,14 @@ function displayInfo(movie) {
     const yearReleased = document.querySelector('#year-released')
     const description = document.querySelector('#description')
     const detailImage = document.querySelector('#detail-image')
-    movieInfo.innerHTML = movie.title
-    yearReleased.innerHTML = movie.release_year
-    description.innerHTML = movie.description
-    detailImage.src = movie.image
+    const watched = document.querySelector('#watched')
+    const blood = document.querySelector('#amount')
 
+    movieInfo.textContent = movie.title
+    yearReleased.textContent = movie.release_year
+    description.textContent = movie.description
+    detailImage.src = movie.image
+    watched.textContent = movie.watched? "Watched":"Unwatched"
+    blood.textContent = movie.blood_amount
 }
+
